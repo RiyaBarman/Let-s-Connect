@@ -4,7 +4,8 @@ const router =express.Router();
 
  console.log(' express routes is working');
  router.get('/',homeController.home);
-// router.use('/users',require('./users'));
+ router.use('/users',require('./users'));
+ router.get('/posts',require('./posts'));
 
 
  module.exports=router;
