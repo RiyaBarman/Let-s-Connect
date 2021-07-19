@@ -3,7 +3,9 @@ const app=express();
 const port=8000;
 //USE EXPRESS ROUTER
 app.use('/',require('./routers/index'));
-
+//VIEW SET UP
+app.set('view engine','ejs');
+app.set('views','./views');
 
 app.listen(port,function(err){
     if(err){

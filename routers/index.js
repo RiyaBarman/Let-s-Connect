@@ -4,7 +4,9 @@ const router =express.Router();
 
  console.log(' express routes is working');
  router.get('/',homeController.home);
+ //CALLING USER CONTROLLER FOR USER HANDLING
  router.use('/users',require('./users'));
+ //POST HANDLING CONTROLLER CALL
  router.get('/posts',require('./posts'));
 
 
