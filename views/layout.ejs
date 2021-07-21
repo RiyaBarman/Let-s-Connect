@@ -1,0 +1,23 @@
+
+<html>
+    <head>
+        <title>
+            <%= title  %>
+        </title>
+        <link rel="stylesheet" href="../assets/CSSstyle/layout.css">
+         <%- style %>   <!--will add all the style link of the rendered page here in the head -->
+        
+    </head>
+
+    <body>
+        <%- include('_header'); %>
+
+        <%- body %>
+
+
+        <%- include('_footer'); %>
+
+        <%- script %>
+        
+    </body>
+</html>
