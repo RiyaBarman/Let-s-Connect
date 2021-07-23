@@ -49,6 +49,9 @@ const db = require('./configure/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./configure/passport-local-strategy');
+const { Store } = require('express-session');
+const MongoStore=require('connect-mongo',session);
+
 
 app.use(express.urlencoded({
     extended: true
@@ -79,11 +82,22 @@ app.use(session({
   //how long the cookie should be valid
   cookie: {
       maxAge: (1000 * 60 * 100)
-  }
+  },
+  store: new MongoStore(
+    {
+        mongoUrl: 'mongodb://localhost/db',
+        autoRemove: 'disabled'
+    
+    },
+    function(err){
+        console.log(err ||  'connect-mongodb setup ok');
+    }
+)
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.setAuthenticatedUser);
 
 // use express router
 app.use('/', require('./routers'));

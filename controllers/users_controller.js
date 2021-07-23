@@ -3,6 +3,7 @@ const User=require('../models/user');
 module.exports.userprofile=function(req,res){
     return res.render('user_profile',{
         title: "user profile"
+        
     });
 };
 
@@ -62,3 +63,7 @@ module.exports.createSession=function(req,res){
     
     return res.redirect('/');
 };
+module.exports.destroySession=function(req,res){
+    req.logout();
+    return res.redirect('/');
+}
