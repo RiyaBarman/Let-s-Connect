@@ -51,7 +51,15 @@ const passport = require('passport');
 const passportLocal = require('./configure/passport-local-strategy');
 const { Store } = require('express-session');
 const MongoStore=require('connect-mongo',session);
-
+const sassMiddleware=require('node-sass-middleware');
+//mentioned to use sass middleaware so that it gets compiled before the server starts
+app.use(sassMiddleware({
+       src:'./assets/SCSS',     //from where this scss should be compiled
+       dest:'./assets/CSS' ,  //where to put the css files
+       debug:true   ,    //show if there is any error during compilation
+       outputStyle:'extended',    //in multiple lines for better understanding
+       prefix:'/CSS'       //where my server should look at for the files
+}))
 
 app.use(express.urlencoded({
     extended: true
