@@ -1,14 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
+<title>
         <%= title %>
-    </title>
+</title>
 </head>
 <body>
-    <h1> social / <%= title %> </h1>
+    <h1> codeial / <%= title %> </h1>
+    <%if(locals.user){%> <!-- this makes sure that post form is visible when user has logged in -->
+    <section id="feed-post">
+        <form action="/posts/create" id="new-post-form" method="POST">
+            <textarea name="content" cols="30" rows="3" placeholder="type here.."></textarea>
+            <input type="submit" value="post">
+        </form>
+   <% } %>
+    <div id="posts-list-container">
+        <ul>
+            <% for(post of posts)  { %>
+                
+            <li>
+                <p>
+                    <%= post.content %>
+                    <br>
+                    <small>
+                        <%= post.user.name %>
+                    </small>
+                </p>
+                
+            </li>
+                
+            <% } %>
+        </ul>
+    </div>
+</section>
 </body>
 </html>

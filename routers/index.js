@@ -11,7 +11,7 @@ const router =express.Router();
  
  //POST HANDLING CONTROLLER CALL
 
- router.get('/posts',require('./posts'));
+ router.use('/posts',require('./posts'));
 
 
  module.exports=router;

@@ -1,6 +1,17 @@
+const Post=require('../models/post');
+
 module.exports.home=function(req,res){
+
    // return res.end("<h1>module is working with controller</h1>");
-   return res.render('home',{
-       title: "HOME"
+   //populate the user of each post to get every attribute of user
+   Post.find({}).populate('user').exec(function(err,posts){
+
+    return res.render('home',{
+
+        title: "codial |  HOME",
+        posts: posts
+ 
    });
+});
+  
 };
