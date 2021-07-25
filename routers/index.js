@@ -12,6 +12,8 @@ const router =express.Router();
  //POST HANDLING CONTROLLER CALL
 
  router.use('/posts',require('./posts'));
+ //comments hadling
+router.use('/comments',require('./comment'));
 
 
  module.exports=router;

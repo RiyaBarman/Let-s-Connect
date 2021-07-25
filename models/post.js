@@ -7,7 +7,12 @@ const postSchema=new mongoose.Schema({
     user:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'     //which schema hasto be referenced for user
-    }
+    },
+    //array of comments because comments are always shown with post so this will remove fetching the comment separately
+    comments:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Comment'
+    }]
 },{
     timestamps:true
 });

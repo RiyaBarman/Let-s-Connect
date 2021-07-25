@@ -4,7 +4,9 @@ module.exports.home=function(req,res){
 
    // return res.end("<h1>module is working with controller</h1>");
    //populate the user of each post to get every attribute of user
-   Post.find({}).populate('user').exec(function(err,posts){
+   Post.find({}).populate('user')
+   .populate('post')
+   .exec(function(err,posts){
 
     return res.render('home',{
 
