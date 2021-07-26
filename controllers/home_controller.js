@@ -1,5 +1,5 @@
 const Post=require('../models/post');
-
+const User=require("../models/user");
 module.exports.home=function(req,res){
 
    // return res.end("<h1>module is working with controller</h1>");
@@ -12,14 +12,16 @@ module.exports.home=function(req,res){
             path:'user'
          }
    })
+   
    .exec(function(err,posts){
-
+   User.find({},function(err,users){
     return res.render('home',{
 
         title: "codial |  HOME",
-        posts: posts
- 
-   });
-});
+        posts: posts,
+        all_users: users
+      });
+   })
   
+   })
 };

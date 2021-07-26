@@ -1,10 +1,10 @@
 <title>
     <%= title %>
 </title>
-</head>
-<body>
-<h1> codeial / <%= title %> </h1>
-<%if(locals.user){%>  this makes sure that post form is visible when user has logged in 
+<link rel="stylesheet"  href="/CSS/home.css">
+<div id="home-container">
+<!-- <h1> codeial / <%= title %> </h1> -->
+ <%if(locals.user){%>   <!--this makes sure that post form is visible when user has logged in  -->
 <section id="feed-post">
     <form action="/posts/create" id="new-post-form" method="POST">
         <textarea name="content" cols="30" rows="3" placeholder="type here.."></textarea>
@@ -15,53 +15,20 @@
     <ul>
         <% for(post of posts){ %>
             
-        <li>
-            <p>
-               <% if(locals.user && locals.user.id== post.user.id){ %>
-    <small>
-        
-        <a href="/posts/destroy/<%= post.id%>">x</a>
-    </small>
-                <%= post.content %>
-                <br>
-                <small>
-                <%} %>
-                    <%= post.user.name %>
-                </small>
-            </p>
-            <div class="post-comments">
-                <% if (locals.user){ %>
-                    <form action="/comments/create" method="POST">
-                        <input type="text" name="content" placeholder="Type Here to add comment...">
-                        <input type="hidden" name="post" value="<%= post._id %>" >
-                        <input type="submit" value="Add Comment">
-                    </form>
-
-                <% } %>
-                <div class="post-comments-list">
-                    <ul id="post-comments-<%= post._id %>">
-                        <% for (comment of post.comments){%>
-                            
-                        <p>
-                            <span>
-                                <%= comment.user.name %> &nbsp;
-                            </span> 
-                            <%= comment.content %>
-                            
-                            
-                        </p>    
-                        <%} %>
-                    </ul>
-                </div>
-
-            </div>
-
-            
-        </li>
+            <%- include('_post'); %>
             
         <% } %>
     </ul>
 </div>
 </section>
-</body>
-</html>
+<section id="user-friends">
+    <h4>FRIENDS</h4>
+    <% for(u of all_users){ %>
+       
+        <p>
+        <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+        </p>
+
+    <% } %>
+</section>
+</div>
